@@ -32,6 +32,8 @@ public class GameScript : MonoBehaviour
     //Preset the texts 
     private void Start()
     {
+        score.text = "Score: " + scoreCounter;
+        lives.text = "Lives: " + livesCounter;
         //Present the Text to values of 0
     }
 
@@ -68,6 +70,7 @@ public class GameScript : MonoBehaviour
     {
         livesCounter--;
         //Update the text 
+        lives.text = "Lives: " + livesCounter;
         if (livesCounter == 0)
         {
             BackToMainMenu();
@@ -78,18 +81,19 @@ public class GameScript : MonoBehaviour
     public void GoalUpdate()
     {
         scoreCounter++;
-        //Update the Text 
+        score.text = "Score: " + scoreCounter;
     }
 
     //Creates a new ball
     public void SpawnBall()
     {
-        //Create Ball
+        var spawn = Instantiate(ball, spawnPoint.position, Quaternion.identity);
     }
 
     //Sends the game back to the main menu scene 
     private void BackToMainMenu()
     {
-        //Send back to the main menu
+        SceneManager.LoadScene("MenuScene"); // I chose just to type out the name of the
+                                             // menu scene instead of using a variable
     }
 }
